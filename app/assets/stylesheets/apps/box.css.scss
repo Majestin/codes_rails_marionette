@@ -1,0 +1,104 @@
+/* HEADER CSS */
+
+#header-region {
+  position: relative;
+  width: 100%;
+  letter-spacing: normal;
+  min-width: 600px;
+}
+
+#header-area {
+  background: rgb(88, 72, 136);
+  padding: 15px 1px;
+  height: 55px;
+}
+
+#header-logo {
+  margin-top: 0;
+  float: left;
+  /*margin: 2px 20px 0 0;*/
+  font: bold 4em  "Avant Garde", "URW Gothic L", "Century Gothic", sans serif;
+  color: rgb(233, 236, 238);
+  font-size: 28px;
+  margin-left: 10px;
+  margin-top: 10px;
+  &:hover {
+    color: rgb(97, 79, 157);
+  }
+}
+
+#header-list {
+  float: right;
+  margin-right: 10px;
+  margin-top: 15;
+  li {
+    margin-left: 50px;
+    a span:hover {
+      color: #999;
+    }
+  }
+}
+
+#header-search {
+  float: left;
+  position: absolute;
+  top: 25px;
+  left: 255px;
+  margin: 0;
+  margin-top: 4px;
+  width: 80px;
+}
+
+#search-input {
+  width: 300px;
+}
+
+#username {
+  font-size: 11px;
+  color: rgb(233, 236, 238);
+  font-size: 18px;
+}
+
+#setting, #add {
+  color: rgb(233, 236, 238);
+  font-size: 18px;
+}
+
+/* HEADER CSS END */
+
+/* LAYOUT CSS */
+
+#codesbox-region {
+  position: fixed;
+  margin-left: 600px;
+}
+
+#sidebar, #list {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  margin-top: 85px;
+}
+
+#sidebar {
+  margin-left: -600px;
+  width: 250px;
+  border-right: 1px solid #ddd;
+  min-height: 100px;
+}
+
+#list {
+  margin-left: -350px;
+  width: 350px;
+  border-right: 1px solid #ddd;
+}
+
+#detail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  margin-top: 85px;
+}
+
+/* LAYOUT CSS END */

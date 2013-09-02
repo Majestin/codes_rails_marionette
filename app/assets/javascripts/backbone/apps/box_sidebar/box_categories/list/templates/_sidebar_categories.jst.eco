@@ -1,0 +1,18 @@
+<div id="category-header" class="tree-toggle">
+	<label>Category</label>
+	<a id="category-add" class="side-add" href="#"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+<ul class="category-list tree">
+	<div id="category-all" class="list-hover">
+		<label>All snippets</label>
+		<span id="all-snippet-count">(<%= @items_length %>)</span>
+	</div>
+	<ul class="category-list">
+		<li class="nav-inner">
+			<ul class="category-nav category-nav-list">
+
+	
+			</ul>
+		</li>
+	</ul>
+</ul>

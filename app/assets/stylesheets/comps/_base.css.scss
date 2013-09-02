@@ -1,0 +1,24 @@
+html, body, div, p, header, h1, h2, h3, 
+ul, li, form, input, textarea, 
+dl, dt, dd, img  {
+	margin: 0;
+	padding: 0;
+}
+fieldset {
+	border: 0;
+}
+
+/* ALL LAYOUT CSS */
+
+body {
+	color: #333;
+	margin: 0 auto;
+	line-height: 1.7em;
+	min-width: 600px;
+}
+
+a {
+	text-decoration: none;
+	color: #1b98f8;
+}
+/* LAYOUT CSS END */

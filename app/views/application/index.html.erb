@@ -1,0 +1,16 @@
+<div id="wrap">
+	<div id="header-region"></div>
+	<div id="main-region"></div>
+</div>
+
+<div id="footer-region"></div>
+
+
+<%= javascript_tag do %>
+$(function() {
+	Codes.start({
+		environment: "<%= Rails.env %>"
+	});
+});
+
+<% end %>
