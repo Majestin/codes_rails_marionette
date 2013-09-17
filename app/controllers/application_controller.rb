@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   def index
   	gon.environment = Rails.env	
+	@snippets_count = Snippet.count
+	gon.watch.snippets_count = @snippets_count 
   end
 
   

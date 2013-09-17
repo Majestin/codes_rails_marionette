@@ -3,6 +3,7 @@ do (Backbone) ->
 	_.extend Backbone.Marionette.Application::,
 	
 		navigate: (route, options = {}) ->
+			# console.log 'navigate', route
 			# route = "#" + route if route.charAt(0) is "/"
 			Backbone.history.navigate route, options
 	
@@ -11,9 +12,14 @@ do (Backbone) ->
 			if _.isEmpty(frag) then null else frag
 		
 		startHistory: ->
+			# console.log 'startHistory'
 			if Backbone.history
 				Backbone.history.start()
-		
+				# console.log "History is exist"
+			else
+				# console.log "History is not exist"
+			# Backbone.history = Backbone.history || new Backbone.History({});
+			
 		register: (instance, id) ->
 			@_registry ?= {}
 			@_registry[id] = instance

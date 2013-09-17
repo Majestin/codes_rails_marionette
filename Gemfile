@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -35,6 +36,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'  
   gem 'annotate'
+  gem 'quiet_assets', '~> 1.0.1'
 end
 
 # 추가할 Gem
@@ -45,7 +47,12 @@ gem 'oj'
 gem 'gon' # Global 변수 할당 가능?
 gem 'eco' # javascript View Template
 gem 'js-routes' #Rails 정의한 라우트를 javascript file에서..
+gem 'jquery-ace-rails'
+gem 'json2-rails'
 
+# for Tagging
+gem 'acts-as-taggable-on'
+gem 'jquery-tokeninput-rails'
 
 # gem 'simple_form', github: 'plataformatec/simple_form', tag: 'v3.0.0.rc'
 

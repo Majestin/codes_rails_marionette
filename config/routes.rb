@@ -3,7 +3,33 @@ Codes::Application.routes.draw do
   
   root 'application#index'
   get 'box' => 'box#index'
-  get 'api/getAllCategory' => 'api#getAllCategory'
+  # get 'api/getAllCategory' => 'api#getAllCategory'
+  # get 'api/getAllTag' => 'api#getAllTag'
+
+  get 'box/all' => 'api#get_all_snippets', as: :get_all_snippets
+  get 'box/:id' => 'api#get_snippets_by_id', as: :get_snippets_by_id
+  # get 'box/tag/:id' => 'api#get_snippets_by_id', as: :get_snippets_by_id
+
+  # get 'box/all' => 'api#get_all_snippets', as: :get_all_snippets
+
+  # get     'box/snippet'     => 'api#snippet'
+  # post    'box/snippet'     => 'api#new_snippet'
+  # patch   'box/snippet/:id' => 'api#update_snippet'
+  # put     'box/snippet/:id' => 'api#update_snippet'
+  # delete  'box/snippet/:id' => 'api#delete_snippet'
+
+  # post 'box/snippet' => 'api#update_snippet', as: :edit_snippet 
+  get 'tags/:tag', to: 'snippets#index', as: :tag
+  
+  resources :categories
+  resources :snippets do
+    collection do
+      get 'tags'
+    end
+  end
+  
+  # resources :tags
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

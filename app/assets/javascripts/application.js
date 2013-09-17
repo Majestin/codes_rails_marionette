@@ -10,13 +10,28 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery/jquery-1.8.3.min
 //= require jquery_ujs
-//= require turbolinks
+//= require json2
+//= require jquery.tokeninput
+// require jquery-ui-draggable
+// require jquery-ui-droppable
+
+//= require ace/ace
+//= require ace/theme-twilight
+//= require ace/mode-ruby
+//= require ace/mode-html
+//= require ace/mode-javascript
+//= require jquery-ace.min
+
+// require turbolinks
+
 //= require purecss-dropdown
+
 //= require lib/underscore
 //= require lib/backbone
 //= require lib/marionette
+
 //= require js-routes
 //= require_tree ./vendor
 //= require_tree ./backbone/config

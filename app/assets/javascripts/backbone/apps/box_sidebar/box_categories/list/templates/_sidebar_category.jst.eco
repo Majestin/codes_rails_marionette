@@ -1,1 +1,0 @@
-<label class="category-nav-header tree-toggle"><%= @title %> </label>

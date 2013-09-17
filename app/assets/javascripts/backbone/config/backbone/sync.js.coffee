@@ -2,7 +2,7 @@ do (Backbone) ->
 	_sync = Backbone.sync
 
 	Backbone.sync = (method, entity, options = {}) ->
-		console.log arguments
+		# console.log arguments
 		_.defaults options,
 			beforeSend: _.bind(methods.beforeSend, 	entity)
 			complete:		_.bind(methods.complete,		entity)

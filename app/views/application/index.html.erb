@@ -1,6 +1,56 @@
 <div id="wrap">
+	
+
 	<div id="header-region"></div>
-	<div id="main-region"></div>
+	<div id="main-region">
+		<div id="box-region" class="puer-g-r">
+			<div id="sidebar" class="puer-u">
+				<div id="category-region">
+
+				</div>
+				<div id="tag-region">
+					
+				</div>
+			</div>
+			<div id="list" class="pure-u">
+				<div id="center-region">
+					
+				</div>
+			</div>
+			<div id="detail" class="pure-u">
+				<div id="detail-region">
+					<div id="detail-header">
+					<!-- <div>
+						날짜
+					</div> -->
+					<div id="detail-title">
+						<!-- <label><input type="" placeholder="Title"></label> -->
+					</div>
+					<!-- <i id="snippet-delete" class="icon-trash"></i> -->
+					<div id="detail-tag">
+						<i class="icon-tag tag"></i>
+						<span></span>
+						<div id="tag-item">
+
+						</div>
+					</div>
+					<div id="detail-memo">
+						<i class="icon-file-text"></i>
+						<!-- <span>Memo</span> -->
+						<div id="memo-block">
+							<!-- <textarea rows="1"></textarea> -->
+						</div>
+					</div>
+				</div>
+				<div id="asset-header">
+					<h5></h5>
+					<!-- <i id="asset-add" class="icon-plus"></i>  -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 </div>
 
 <div id="footer-region"></div>
@@ -8,9 +58,9 @@
 
 <%= javascript_tag do %>
 $(function() {
-	Codes.start({
-		environment: "<%= Rails.env %>"
-	});
+Codes.start({
+environment: "<%= Rails.env %>"
+});
 });
 
 <% end %>

@@ -1,17 +1,19 @@
 @Codes.module "Entities", (Entities, App, Backbone, Marionette, $, _) ->
 	
 	class Entities.Category extends App.Entities.Model
-		# urlRoot: -> Routes.category_index_path()
+		urlRoot: -> Routes.categories_path()
 	
 	class Entities.CategoryCollection extends App.Entities.Collection
 		model: Entities.Category
-		url: -> Routes.api_getAllCategory_path()
+		url: -> Routes.categories_path()
 	
 	API =
 		getCategories: ->
 			categories = new Entities.CategoryCollection
 			categories.fetch
 				reset: true
+				# error: (mode) ->
+				# 	console.log 
 			categories
 			
 		newCategory: ->

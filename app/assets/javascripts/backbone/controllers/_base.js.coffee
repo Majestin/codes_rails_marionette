@@ -2,6 +2,8 @@
 
 	class Controllers.Base extends Marionette.Controller
 
+
+		
 		constructor: (options = {}) ->
 			@region = options.region or App.request "default:region"
 			super options
@@ -17,3 +19,6 @@
 		show: (view) ->
 			@listenTo view, "close", @close
 			@region.show view
+			# console.log "show", view
+			# ,gon.snippetsController
+			# view.findCategoryDOM()
