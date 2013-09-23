@@ -1,0 +1,22 @@
+<div data-tag="<%= @name %>" class="tag-item">
+	<% if @count is 1: %>
+	<i class="icon-tag"></i>
+	<% else: %>
+	<i class="icon-tags"></i>
+	<% end %>
+	
+	<label class="tag-title"><%= @name %></label>
+	<span class="tag-badge"><%= @count %></span>
+
+	<div class="right-item pull-right">
+		<i class="icon-ellipsis-horizontal" data-toggle="dropdown"></i>
+
+		<ul id="category-dropdown" class="dropdown-menu" role="menu">
+			<li role="presentation" class="dropdown-header"><%= @name %></li>
+			<li role="presentation" class="divider"></li>
+			<li><a href="#">Rename</a></li>
+			<li><a href="#">Delete</a></li>
+
+		</ul>	
+	</div>
+</div>

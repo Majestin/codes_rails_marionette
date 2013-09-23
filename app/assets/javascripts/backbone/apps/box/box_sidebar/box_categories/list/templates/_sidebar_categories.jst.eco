@@ -1,0 +1,22 @@
+
+<div id="category-header" class="sidebar-header tree-toggle">
+	<label>Category</label>
+	<i id="new-category-add" class="icon-plus"></i>
+</div>
+<ul id="category-list" class="sidebar-list tree">
+	<li id="category-all">			
+		<div data-category="all" class="category-item ">
+			<i class="left-item icon-inbox"></i>
+			<label class="category-title">All snippets</label>
+			<span class="all-snippets-count sidebar-badge"><%= gon.snippets_count %> </span>
+
+			<div class="right-item pull-right">
+
+			</div>
+		</div>
+	</li>
+</ul>
+
+<div id="new-category-region">
+
+</div>

@@ -1,0 +1,34 @@
+<!-- <a href="#box/<%= @id %>">
+	<label data-category="<%= @id %>" class="category-nav-header tree-toggle"><%= @title %> (<%= @snippets.length %>) </label> 
+	<a id="category-remove" class="category-remove pull-right" href="#">
+		<i class="icon-remove"></i>
+	</a>
+
+</a> -->
+
+<div data-category="<%= @id %>" class="category-item">
+	<i class="left-item icon-folder-open-alt tree-toggle"  ></i>
+
+	<label class="category-title"><%= @title %></label>
+	<span class="sidebar-badge"><%= @snippets.length %></span>		
+
+	<div class="right-item pull-right">
+		<!-- <% if @snippets.length: %> -->
+		<!-- <% end %> -->
+
+		<div class="context-item"  >
+			<i class="icon-ellipsis-horizontal" data-toggle="dropdown"></i>
+
+			<ul id="category-dropdown" class="dropdown-menu" role="menu">
+				<li role="presentation" class="dropdown-header"><%= @title %></li>
+				<li role="presentation" class="divider"></li>
+				<li><a href="#">Rename</a></li>
+				<li><a href="#">Delete</a></li>
+				
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,56 @@
+<div data-snippet="<%= @id %>" class="list-block">
+	<div class="content">
+		<h5><%= @title %></h5>
+		<i class="icon-star"></i>
+	</div>
+	<div class="item">
+		<div class="list-type">
+			<span class="badge red">Javascript</span>
+			<span class="badge red">Javascript</span>
+			
+		</div>
+		<div class="item-more">
+			<i class="icon-ellipsis-horizontal"></i>
+		</div>
+	</div>
+	<div class="date">
+		<span id="list-date"><%= @created_at_formatted %></span>
+	</div>
+</div>
+
+<!-- OLD -->
+<!-- <div class="list-content">
+	<div>
+		<h5 class="list-name"></h5>
+	</div>
+	<div class="list-item">
+		<a class="list-category list-category-html" href="#">HTML</a>
+		<a class="list-category list-category-javascript" href="#">javascript</a>
+		<span class="list-date"><%= @created_at_formatted %></span>
+	</div>
+</div> -->
+
+
+<!-- New -->
+<!-- 
+<li>
+	<div class="content">
+		<h5>[HTTP] Method - Get, Post, Delete</h5>
+		<i class="icon-star"></i>
+	</div>
+	<div class="item">
+		<span class="badge blue">HTML</span>
+		<span class="badge red">Javascript</span>
+		<span id="list-date">Aug 15</span>
+	</div>
+</li>
+<li>
+	<div class="content">
+		<h5>[HTTP] Method - Get, Post, Delete</h5>
+	</div>
+	<div class="item">
+		<span class="badge green">HTML</span>
+		<span class="badge red">Javascript</span>
+		<span id="list-date">Aug 15</span>
+	</div>
+</li> -->

@@ -1,0 +1,4 @@
+<input id="newCategoryInput" class="new-category-title pull-left" value=""></input>
+<a id="new-category-remove" class="new-category-remove" href="#">
+	<i class="icon-remove"></i>
+</a>

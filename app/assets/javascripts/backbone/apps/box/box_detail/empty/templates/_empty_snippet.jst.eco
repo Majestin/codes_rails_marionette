@@ -1,0 +1,27 @@
+<div id="detail-header">
+<!-- <div>
+	날짜
+</div> -->
+<div id="detail-title">
+	<!-- <label><input type="" placeholder="Title"></label> -->
+</div>
+<!-- <i id="snippet-delete" class="icon-trash"></i> -->
+<div id="detail-tag">
+	<i class="icon-tag tag"></i>
+	<span></span>
+	<div id="tag-item">
+
+	</div>
+</div>
+<div id="detail-memo">
+	<i class="icon-file-text"></i>
+	<!-- <span>Memo</span> -->
+	<div id="memo-block">
+		<!-- <textarea rows="1"></textarea> -->
+	</div>
+</div>
+</div>
+<div id="asset-header">
+
+
+</div>

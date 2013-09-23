@@ -1,0 +1,49 @@
+<!-- <div id="list-header" >
+    <label>All snippets</label>
+    <a class="side-add pull-right" href="#"><i class="icon-plus"></i></a>
+</div>
+<div class="list-group">
+    
+</div>
+<div class="list-footer">
+    <a><i class="icon-chevron-left"></i></a>
+    <label>title</label>
+    <span class="list-count">(<%= @items_length %>)</span>
+</div> -->
+
+<div id="list-header">
+	<label>All snippets</label>
+	<i class="new-snippet-add icon-plus"></i>
+</div>
+
+<ul id="list-group">
+
+</ul>
+
+
+<div class="list-footer">
+
+	<i id="sidebar-folding" class="icon-chevron-sign-left"></i>
+
+	<div class="btn-group dropup">
+		<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+			View Options <span class="caret"></span>
+		</button>
+
+		<ul id="view-options-menu" class="dropdown-menu" role="menu">
+			<li role="presentation" class="dropdown-header">Sort By:</li>
+			<li role="presentation" class="divider"></li>
+			<li><a href="#">Date Created</a></li>
+			<li><a href="#">Date Updated</a></li>
+			<li><a href="#">Title</a></li>
+		</ul>
+	</div>
+
+<!-- 	 <button data-dropdown="#dropdown-2" id="snippet-order" class="pure-button pure-button-active">
+		<i class="icon-caret-up"></i>TITLE
+	</button> -->
+
+	<span id="list-count" class="cnt-badge"><%= @items_length %></span>
+</div>
+
+

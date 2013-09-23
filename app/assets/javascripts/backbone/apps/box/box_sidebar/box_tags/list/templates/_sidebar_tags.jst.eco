@@ -1,0 +1,7 @@
+<div id="tag-header" class="sidebar-header tree-toggle">
+	<label>Tag</label>
+	<!-- <i id="new-tag-add" class="icon-plus"></i> -->
+</div>
+<ul id="tag-list" class="sidebar-list tree">
+
+</ul>
