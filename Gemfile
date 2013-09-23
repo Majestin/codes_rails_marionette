@@ -40,7 +40,7 @@ group :development do
 end
 
 # 추가할 Gem
-gem 'purecss'
+# gem 'purecss'
 gem 'font-awesome-rails'
 gem 'rabl' # JSON Parser
 gem 'oj'
@@ -53,7 +53,10 @@ gem 'json2-rails'
 # for Tagging
 gem 'acts-as-taggable-on'
 gem 'jquery-tokeninput-rails'
+gem 'less-rails'
+gem 'therubyracer', platforms: :ruby
 
+gem 'semantic-ui-rails'
 # gem 'simple_form', github: 'plataformatec/simple_form', tag: 'v3.0.0.rc'
 
 # # gem 'carrierwave'

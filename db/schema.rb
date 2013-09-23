@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130916101425) do
+ActiveRecord::Schema.define(version: 20130922072559) do
 
   create_table "categories", force: true do |t|
     t.string   "title"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20130916101425) do
   end
 
   add_index "snippets", ["category_id"], name: "index_snippets_on_category_id"
+
+  create_table "sources", force: true do |t|
+    t.string   "asset_source"
+    t.string   "asset_title"
+    t.string   "asset_type"
+    t.integer  "snippet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sources", ["snippet_id"], name: "index_sources_on_snippet_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

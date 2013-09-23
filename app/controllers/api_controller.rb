@@ -35,6 +35,19 @@ class ApiController < ApplicationController
 		end
 	end
 
+	# GET /api/sources/:id
+	def get_sources_by_id
+		@snippet = Snippet.find_by_id(params[:id])
+
+		if @snippet
+			@sources = @snippet.sources	
+		else
+			respond_to do |format|
+				format.json { render json: {error: 'invalid snippet id'}, status: 500 }
+			end
+		end
+	end
+
 	# snippet
 	# def snippet
 	# 	@snippets = Snippet.all
