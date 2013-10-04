@@ -1,9 +1,0 @@
-		# events:
-		# 	"click .category-nav-header"	: "categoryClicked"
-		# categoryClicked: (e) ->
-		# 	e.preventDefault()
-		# 	# 선택된 DOM CSS 변경 
-		# 	el = $(e.currentTarget).parent()
-		# 	el.addClass("selected").siblings().removeClass("selected")
-		# 	category = $(e.currentTarget).data("category")
-		# 	App.vent.trigger "category:selected", category	
