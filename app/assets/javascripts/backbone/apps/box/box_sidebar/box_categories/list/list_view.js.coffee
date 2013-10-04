@@ -22,7 +22,7 @@
 		itemViewContainer: "ul"
 		events:
 			"click .category-item"	: "categoryClicked"
-			"click .context-item"	: "contextItemClicked"
+			# "click .context-item"	: "contextItemClicked"
 			# "dblclick .category-item"	: "categoryDoubleClicked"
 		triggers:
 			"click #new-category-add" 		 : "new:category:add:button:clicked"	
@@ -33,22 +33,20 @@
 			# console.log "List.SideBarCategories initialize"
 			
 		onRender: ->
+			@$('.context-item i').dropdown()
+
 		onCompositeRendered: ->
 			# console.log "Dropdown"
 
 		contextItemClicked: (e) ->
-			console.log 'contextItemClicked'
-			$('.context-item i').dropdown()
+			# console.log 'contextItemClicked'
 			e.stopPropagation()
 
 		categoryDoubleClicked: (e)->
-			console.log "categoryDoubleClicked e:",e
+			# console.log "categoryDoubleClicked e:",e
 
 		categoryClicked: (e) ->
 			e.preventDefault()
-			# el = $(e.currentTarget)
-			# el.addClass("selected").parent().siblings().children().removeClass("selected")
-			# $('#tag-list li').siblings().children().removeClass("selected")						
 			category_id = $(e.currentTarget).data("category")
 			@trigger "category:selected", category_id
 
@@ -104,3 +102,6 @@
 					success:
 						console.log "category success!"
 				# console.log @model		
+
+		onRender: ->
+			@$("#newCategoryInput").focus()

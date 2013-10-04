@@ -22,8 +22,8 @@
 			<ul id="category-dropdown" class="dropdown-menu" role="menu">
 				<li role="presentation" class="dropdown-header"><%= @title %></li>
 				<li role="presentation" class="divider"></li>
-				<li><a href="#">Rename</a></li>
-				<li><a href="#">Delete</a></li>
+				<li><a id="category-rename" href="#">Rename</a></li>
+				<li><a id="category-remove" href="#">Delete</a></li>
 				
 			</ul>
 

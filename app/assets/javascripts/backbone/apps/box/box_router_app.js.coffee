@@ -1,10 +1,10 @@
-@Codes.module "BoxApp", (BoxApp, App, Backbone, Marionette, $, _) ->
+@Codes.module "BoxApp", (BoxApp, App) ->
 
 	@startWithParent = false
 	
 	class BoxApp.Router extends Marionette.AppRouter
 		appRoutes:
-			"" 					: "showInbox"	
+			# "" 					: "showInbox"	
 			"box" 				: "showInbox"
 			"box/all" 			: "showInbox"
 			"box/:id"			: "showSnippetsByCategory"
@@ -13,24 +13,35 @@
 			"tags/:tag"			: "showSnippetByTag"
 
 		before: ->
-			# console.log 'before'
-			App.startSubApp "BoxApp",
-				mainRegion: App.mainRegion
-				categoryRegion: App.categoryRegion
-				tagRegion: App.tagRegion				
-				centerRegion: App.centerRegion			
-				detailRegion: App.detailRegion
+			console.log 'before'
+			if Codes.currentUser
+				App.startSubApp "BoxApp",
+					mainRegion: App.mainRegion	
+
+			else
+				alert("Please Login..")
+				App.navigate @rootRoute, trigger: true
+
 
 	API =
 		showInbox: ->
-			App.BoxApp.controller.showInbox()
+			App.BoxApp.controller.showInbox()				
+
+				# App.navigate Routes.root_path()
+
+				# Backbone.history.navigate "#popular"
+
+
 		showSnippetsByCategory: (category_id) ->
 			App.BoxApp.controller.showSnippetByCategory category_id
+
 		showSnippetById: (id) ->
 			App.BoxApp.controller.showSnippetById id
+	
 		showSnippetByTag: (tag) ->
 			App.BoxApp.controller.showSnippetByTag tag
-			
+
+
 	App.addInitializer ->
 		new BoxApp.Router
 			controller: API

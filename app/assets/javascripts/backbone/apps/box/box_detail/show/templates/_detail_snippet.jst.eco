@@ -1,59 +1,18 @@
-<!-- <div class="detail-content">
-	<div class="detail-content-top pure-g">
 
 
-		<div class="detail-content-header pure-u-1">
-			<input class="detail-content-title pull-left" value="<%= @title %>"></input>
-			<a  class="detail-delete pull-right"><span class="glyphicon glyphicon-trash "></span></a>
-		</div>
-		<div id="detail-content-top-sub" class="pure-u-1">
-			<ul class="detail-tag">
-				<li class="active">tag</li>
-			</ul>
-			<span class="detail-date"><%= @created_at_formatted %></span>
-		</div>
+
+<div id="detail-header">
+
+	<div id="detail-title">
+		<label><input class="ui input" name="title" type="" placeholder="title" value="<%= @title %>"></label>
 	</div>
-	<div class="detail-content-memo">
-		<p>
-			<%= @memo %>
-		</p>
-		<textarea class="my-code-area" rows="4" style="width: 100%"><%= @asset_source %></textarea>
 
-
-	</div>
-	<div class="detail-content-body">
-		<div id="editor"></div>
-	</div>
-						[<% for tags in @tags: %>
-					{
-						"id:<%= tags.id %>
-						"name:"<%= tags.name %>"
-					}
-
-				<% end %>]
-				<% if @tags.length: %>
-					<% for tags in @tags: %>
-						<a href="<%= tags.id %>"><%= tags.name %></a>
-					<% end %>
-				<% else: %>
-					No Tags
-				<% end %>
-			</div> -->
-
-
-
-			<div id="detail-header">
-
-				<div id="detail-title">
-					<label><input class="ui input" name="title" type="" placeholder="title" value="<%= @title %>"></label>
-				</div>
-
-				<i id="snippet-share" class="icon-share-alt"></i>
-				<i id="snippet-delete" class="icon-trash"></i>
-				<div id="detail-tag">
-					<i class="icon-tag tag"></i>
-					<span>Tags</span>
-					<div id="tag-item">
+	<i id="snippet-share" class="icon-share-alt <%= if @shared: %> selected <% end %>"></i>
+	<i id="snippet-delete" class="icon-trash"></i>
+	<div id="detail-tag">
+		<i class="icon-tag tag"></i>
+		<span>Tags</span>
+		<div id="tag-item">
 <!-- 				<span class="badge">java</span>
 				<span class="badge">html</span>
 				<span class="badge">javascript</span> -->
@@ -76,7 +35,7 @@
 	<h5>Asset</h5>
 </div>
 <div id="asset-content">
-	<!-- <div id="asset-input">
+	<div id="asset-input">
 		<div id="tabs">
 			<ul id="assetTab" class="nav nav-tabs">
 				<% if @sources.length: %>
@@ -86,18 +45,18 @@
 				</li>						
 				<% end %>
 				<% else: %>
-				No Assets
+
 				<% end %>	
 				<li>
-					<a><i class="icon-plus"></i></a>
+					<a id="new-source"><i class="icon-plus"></i></a>
 				</li>
 				
 			</ul>
-			<div id="aseetTabContent" class="tab-content">
+			<div id="assetTabContent" class="tab-content">
 
 				<% if @sources.length: %>
 				<% for source in @sources: %>
-				<div data-asset="<%= source.id %>" id="<%= source.id %>" class="tab-pane active">
+				<div data-asset="<%= source.id %>" id="<%= source.id %>" class="tab-pane">
 					<div id="asset-item">
 						<div id="asset-view-item">
 							<div id="asset-edit-mode">
@@ -112,7 +71,7 @@
 
 										<li><a href="#"><span>Text</span></a></li>
 										<li><a href="#"><span>C_Cpp</span></a></li>
-										<li><a href="#"><span>coffee</span></a></li>
+										<li><a href="#"><span>Coffee</span></a></li>
 										<li><a href="#"><span>CSharp</span></a></li>
 										<li><a href="#"><span>CSS</span></a></li>												
 										<li><a href="#"><span>golang</span></a></li>
@@ -143,14 +102,16 @@
 										<li><a href="#"><span>YAML</span></a></li>
 									</ul>
 								</div>
-								<i id="asset-ok" class="icon-ok asset-badge"></i>
 								<i id="asset-cancel" class="icon-remove asset-badge"></i>
+								<i id="asset-ok" class="icon-ok asset-badge"></i>
+
 							</div>
 
 							<div id="asset-view-mode">
 								<span id="asset-type"><%= source.asset_type %></span>
 								<div id="asset-button-group">
-									<i id="asset-copy" class="icon-copy asset-badge"></i>											
+									<i id="asset-delete" class="icon-trash asset-badge"></i>									
+									<!-- <i id="asset-copy" class="icon-copy asset-badge"></i>											 -->
 									<i id="asset-edit" class="icon-edit asset-badge"></i>
 								</div>									
 							</div>									
@@ -162,17 +123,18 @@
 
 				</div>
 				<% end %>
+
 				<% else: %>
-				No Assets
+
 				<% end %>		
 
 				<div id="plus" class="tab-pane">
-					Plus
+					Please create the asset
 					<div class="ace_editor" id="editor_html"></div>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div> <!-- asset-content -->
 
 <!-- <div class="ace_editor" id="editor"></div> -->

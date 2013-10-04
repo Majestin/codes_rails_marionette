@@ -1,0 +1,36 @@
+<!-- <div id="sigin-form"> -->
+<form id="signin-form" class="form-horizontal">
+	<fieldset>
+
+		<div class="ui error form segment">
+
+			<div class="email field">
+				<label>Email</label>
+				<div class="ui left labeled icon input">
+					<input id="email" name="email" type="text" required="required" placeholder="Email" />
+					<i class="email icon"></i>
+					<div class="ui corner label">
+						<i class="icon asterisk"></i>
+					</div>
+				</div>
+			</div>
+			<div class="password field">
+				<label>Password</label>
+				<div class="ui left labeled icon input">
+					<input id="password" name="password" type="password" required="required" />
+					<i class="lock icon"></i>
+					<div class="ui corner label">
+						<i class="icon asterisk"></i>
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<input type="submit" value="Login" class="ui blue submit button" />
+			</div>
+
+			
+		</div>
+	</fieldset>
+</form>
+
+<!-- </div> -->

@@ -1,0 +1,5 @@
+<div class="live-state">
+	<h3 class="state-content">
+		 All code snippets count <strong><%= gon.all_snippets_count %> </strong> / Your code snippets count <strong><%= gon.snippets_count %></strong>
+	</h3>
+</div>

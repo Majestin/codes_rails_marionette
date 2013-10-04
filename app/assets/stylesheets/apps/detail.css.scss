@@ -19,7 +19,7 @@
   overflow: auto; */
 
   #detail-header {
-  	padding: 7px 25px;
+  	padding: 7px 21px;
   	margin: 0 auto;
   	border-bottom: 1px solid rgb(229, 233, 237);
   }
@@ -36,23 +36,25 @@
 	input {
 		width: 100%;
 		border: 0;
-		color: rgb(52, 52, 52);
+		color: rgb(52,52,52);
+		background-color: white;
+		outline: none;
 	}
 	label {
-		min-width: 786px;
+		min-width: 750px;
 		font-size: 1.5em;
 		font-weight: 500;
-		color: rgb(52, 52, 52);
+		color: rgb(52,52,52);
 	}
 }
 #snippet-share {
 	position: absolute;
 	top: 10px;
-	right: 60px;
+	right: 68px;
 	font-size: 0.85em;
 	font-weight: 600;
-	color: rgb(193, 193, 193);
-	border: 2px solid rgb(193, 193, 193);
+	color: rgb(193,193,193);
+	border: 2px solid rgb(193,193,193);
 	border-radius: 17px;
 	padding: 5px 4.5px;
 	cursor: pointer;
@@ -60,17 +62,23 @@
 		color: rgb(66, 179, 213);
 		border-color: rgb(66, 179, 213);
 	}
+
+	&.selected {
+		color: rgb(66, 179, 213);
+		border: 2px solid rgb(66, 179, 213);
+
+	}
 }
 #snippet-delete {
 	position: absolute;
 	top: 10px;
-	right: 27px;
+	right: 33px;
 	font-size: 0.9em;
 	font-weight: 600;
-	color: rgb(193, 193, 193);
-	border: 2px solid rgb(193, 193, 193);
+	color: rgb(193,193,193);
+	border: 2px solid rgb(193,193,193);
 	border-radius: 17px;
-	padding: 4px 6px;
+	padding: 4.5px 5.5px;
 	cursor: pointer;
 	&:hover {
 		color: rgb(233, 86, 37);
@@ -134,9 +142,9 @@
 
 #memo-block {
 	margin-top: 3px;
-	border: 1px solid #ADAAAA;
+	border: 2px solid rgb(217,217,217);
+    border-radius: 4px;
 	padding: 4px;
-	border-radius: 6px;
 }
 
 #detail-memo {
@@ -147,17 +155,19 @@
 		resize: vertical;
 		border: 0;
 		width: 100%;
+		outline: none;
+		color: rgb(120, 129, 137);
 	}
 }
 
 #asset-header {
-	background-color: rgb(244, 244, 244);
+	background-color: rgb(244,244,244);
 	padding: 7px 28px;
-	border-bottom: 1px solid rgb(229, 233, 237);
+	border-bottom: 1px solid rgb(229,233,237);
 	h5 {
 		font-size: 1.1em;
 		font-weight: 500;
-		color: rgb(117, 117, 117);
+		color: rgb(117,117,117);
 	}
 	button {
 		float: right;
@@ -170,31 +180,6 @@
 
 #design_html, #design_css {
 	display: none;
-}
-
-
-
-
-
-
-
-
-
-#asset-header {
-	background-color: rgb(244, 244, 244);
-	padding: 7px 28px;
-	border-bottom: 1px solid rgb(229, 233, 237);
-	h5 {
-		font-size: 1.1em;
-		font-weight: 500;
-		color: rgb(117, 117, 117);
-	}
-	button {
-		float: right;
-		margin-top: -26px;
-		padding: 0.3em 1em;
-		color: rgba(75, 75, 75, 0.8);
-	}
 }
 
 
@@ -221,14 +206,17 @@
 }
 
 #asset-input {
-	padding: 7px 25px;
+	padding: 11px 21px;
 	margin: 0 auto;
 }
-
+#assetTab li {
+	cursor: pointer;
+}
 #asset-item i {
-	float: right;
 	display: inline-block;
+	float: right;
 	margin-right: 6px;
+	margin-top: 6px;
 }
 
 #asset-title {
@@ -241,6 +229,7 @@
 	padding: 1px 2px 1px;
 	margin-right: 6px;
 	width: 200px;
+	margin-top: 5px;
 }
 
 #title-input {
@@ -254,6 +243,8 @@
 
 #type-select-btn {
 	padding: 4px 12px;
+	padding: 3px 12px;
+	margin-top: 4px;
 }
 
 #asset-ok {
@@ -276,10 +267,14 @@
 	border-color: rgb(233, 86, 37);
 }
 
-/*#asset-delete:hover {
-  color: rgb(233,86,37);
-  border-color: rgb(233,86,37);
-}*/
+#asset-delete {
+  cursor: pointer;
+  padding: 5px 6px;
+  &:hover {
+    color: rgb(233,86,37);
+    border-color: rgb(233,86,37);
+  }
+}
 
 #asset-copy {
 	cursor: pointer;
@@ -288,7 +283,11 @@
 
 #asset-edit {
 	cursor: pointer;
-
+	padding: 5px 4.5px;
+	&:hover {
+    color: rgb(125,194,41);
+    border-color: rgb(125,194,41);
+  }
 }
 #asset-input .ace_editor {
 	width: 100%;
@@ -301,7 +300,8 @@
 }
 
 #tabs {
-	border: 1px solid #ADAAAA;
+	border: 1px solid rgba(25, 30, 33, 0.3);
+    border-radius: 4px;
 	padding: 0;
 }
 
@@ -330,8 +330,8 @@
 .asset-badge {
 	font-size: 1.0em;
 	font-weight: 600;
-	color: rgb(193, 193, 193);
-	border: 2px solid rgb(193, 193, 193);
+	color: rgb(193,193,193);
+	border: 2px solid rgb(193,193,193);
 	border-radius: 17px;
 	padding: 4px 6px;
 }

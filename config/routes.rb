@@ -1,11 +1,16 @@
 Codes::Application.routes.draw do
 
+	devise_for :users
 	root 'application#index'
 	get 'box' => 'box#index'
 
 	get 'box/all' => 'api#get_all_snippets', as: :get_all_snippets
 	get 'box/:id' => 'api#get_snippets_by_id', as: :get_snippets_by_id
 	get 'api/sources/:id' => 'api#get_sources_by_id', as: :get_sources_by_id
+
+
+	get 'popular' => 'api#get_popular_snippets', as: :get_popular_snippets
+	get 'popular/:lang' => 'api#get_snippets_by_language', as: :get_snippets_by_language
 
 	# get 'box/tag/:id' => 'api#get_snippets_by_id', as: :get_snippets_by_id
 

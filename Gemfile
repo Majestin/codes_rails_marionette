@@ -39,6 +39,11 @@ group :development do
   gem 'quiet_assets', '~> 1.0.1'
 end
 
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
+end
+
 # 추가할 Gem
 # gem 'purecss'
 gem 'font-awesome-rails'
@@ -56,17 +61,24 @@ gem 'jquery-tokeninput-rails'
 gem 'less-rails'
 gem 'therubyracer', platforms: :ruby
 
-gem 'semantic-ui-rails'
-# gem 'simple_form', github: 'plataformatec/simple_form', tag: 'v3.0.0.rc'
+# gem 'semantic-ui-rails'
 
-# # gem 'carrierwave'
+
+
+
+gem 'simple_form', github: 'plataformatec/simple_form', tag: 'v3.0.0.rc'
+
+gem 'carrierwave'
 # gem 'carrierwave-aws'  # added by hschoi
+gem 'rmagick'
 
-# gem 'rmagick'
+gem 'devise'
+# gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
+# gem 'omniauth-github'
 
-# gem 'devise', github: 'plataformatec/devise', branch: 'rails4'
-# gem 'authority'
-# gem 'rolify'
+gem 'authority'
+gem 'rolify'
 
 
 

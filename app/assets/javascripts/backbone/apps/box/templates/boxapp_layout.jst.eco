@@ -1,0 +1,20 @@
+<div id="box-region">
+	<div id="sidebar">
+		<div id="category-region">
+
+		</div>
+		<div id="tag-region">
+
+		</div>
+	</div>
+	<div id="list">
+		<div id="center-region">
+
+		</div>
+	</div>
+	<div id="detail">
+		<div id="detail-region">
+
+		</div>
+	</div>
+</div>

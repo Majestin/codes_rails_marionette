@@ -1,0 +1,38 @@
+
+<div class="ui divided horizontal list live-language">
+	<div class="item" data-live="All" ><a href="#popular">All</a></div>
+	<div class="item" data-live="C_Cpp" ><a href="#popular/C_Cpp"><span>C++</span></a></div>
+	<div class="item" data-live="coffee" ><a href="#popular/coffee"><span>coffee</a></div>
+	<div class="item" data-live="CSharp" ><a href="#popular/CSharp"><span>C#</div>
+	<div class="item" data-live="CSS" ><a href="#popular/CSS"><span>CSS</div>
+	<div class="item" data-live="HAML" ><a href="#popular/HAML"><span>HAML</div>
+	<div class="item" data-live="HTML" ><a href="#popular/HTML"><span>HTML</div>
+	<div class="item" data-live="Jade" ><a href="#popular/Jade"><span>Jade</div>
+	<div class="item" data-live="Java" ><a href="#popular/Java"><span>Java</div>
+	<div class="item" data-live="JavaScript" ><a href="#popular/JavaScript"><span>JavaScript</span></a></div>
+	<div class="item" data-live="JSON" ><a href="#popular/JSON"><span>JSON</span></a></div>
+	<div class="item" data-live="JSP" ><a href="#popular/JSP"><span>JSP</span></a></div>
+	<div class="item" data-live="Lua" ><a href="#popular/Lua"><span>Lua</span></a></div>
+	<div class="item" data-live="Markdown" ><a href="#popular/Markdown"><span>Markdown</span></a></div>
+	<div class="item" data-live="ObjectiveC" ><a href="#popular/ObjectiveC"><span>ObjectiveC</span></a></div>
+	<div class="item" data-live="Perl" ><a href="#popular/Perl"><span>Perl</span></a></div>
+	<div class="item" data-live="pgSQL" ><a href="#popular/pgSQL"><span>pgSQL</span></a></div>
+	<div class="item" data-live="PHP" ><a href="#popular/PHP"><span>PHP</span></a></div>
+	<div class="item" data-live="Python" ><a href="#popular/Python"><span>Python</span></a></div>
+	<div class="item" data-live="R" ><a href="#popular/R"><span>R</span></a></div>
+	<div class="item" data-live="RDoc" ><a href="#popular/RDoc"><span>RDoc</span></a></div>
+	<div class="item" data-live="RHTML" ><a href="#popular/RHTML"><span>RHTML</span></a></div>
+	<div class="item" data-live="Ruby" ><a href="#popular/Ruby"><span>Ruby</span></a></div>
+	<div class="item" data-live="Scala" ><a href="#popular/Scala"><span>Scala</span></a></div>
+	<div class="item" data-live="SCSS" ><a href="#popular/SCSS"><span>SCSS</div>
+	<div class="item" data-live="SH" ><a href="#popular/SH"><span>SH</span></a></div>
+	<div class="item" data-live="SQL" ><a href="#popular/SQL"><span>SQL</span></a></div>
+	<div class="item" data-live="SVG" ><a href="#popular/SVG"><span>SVG</span></a></div>
+	<div class="item" data-live="XML" ><a href="#popular/XML"><span>XML</span></a></div>
+	<div class="item" data-live="YAML" ><a href="#popular/YAML"><span>YAML</span></a></div>
+</div>
+<div id="live-box" class="group">
+	<ol id="lives" class="group">
+
+	</ol>
+</div>

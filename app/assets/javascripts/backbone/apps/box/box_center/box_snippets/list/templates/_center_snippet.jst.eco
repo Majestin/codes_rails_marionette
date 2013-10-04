@@ -1,0 +1,37 @@
+<div data-snippet="<%= @id %>" class="list-block">
+	<div class="content">
+		<h5><%= @title %></h5>
+		<% if @shared: %>
+		<i class="icon-share-alt" style="color: rgb(66, 179, 213);"></i>
+		<% else: %>
+		<i class="icon-share-alt"></i>
+		<% end %>
+		
+	</div>
+	<div class="item">
+		<div class="list-type">
+			<% if @sources.length: %>
+			<% for source, i in @sources: %>
+
+			<% if i > 2: %>			
+			<% if i is @sources.length-1: %>
+			<div class="item-more">
+				<i class="icon-ellipsis-horizontal"></i>
+			</div>
+			<% end %>
+			<% else: %>
+			<span class="badge <%= source.asset_type %>"><%= source.asset_type %></span>	
+
+			<% end %>
+			<% end %>
+			<% else: %>
+
+			<% end %>				
+			
+		</div>
+
+	</div>
+	<div class="date">
+		<span id="list-date"><%= @created_at_formatted %></span>
+	</div>
+</div>

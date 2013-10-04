@@ -1,4 +1,4 @@
-attributes :id, :title, :memo, :shared, :category_id, :tags, :sources
+attributes :id, :title, :memo, :shared, :category_id, :tags, :sources, :created_at, :updated_at
 
 node do |snippet|
 	{

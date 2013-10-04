@@ -7,5 +7,5 @@ object @snippet
 # 		:is_admin 						=> true
 # 	}
 # end
-extends "snippets/_base"
+extends "snippets/_shared_base"
 

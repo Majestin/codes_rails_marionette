@@ -15,7 +15,7 @@
 
 //= require jquery_ujs
 //= require json2
-// require semantic-ui
+//= require semantic-ui
 // require jquery.tokeninput
 // require jquery-ui-draggable
 // require jquery-ui-droppable
@@ -68,6 +68,9 @@
 
 //= require lib/underscore
 //= require lib/backbone
+//= require lib/backbone.sync.rails
+//= require lib/Backbone.ModelBinder
+//= require lib/Backbone.CollectionBinder
 //= require lib/marionette
 
 //= require js-routes

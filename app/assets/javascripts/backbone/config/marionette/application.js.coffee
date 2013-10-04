@@ -16,7 +16,6 @@ do (Backbone) ->
 			if Backbone.history
 				Backbone.history.start()
 				# console.log "History is exist"
-			else
 				# console.log "History is not exist"
 			# Backbone.history = Backbone.history || new Backbone.History({});
 			

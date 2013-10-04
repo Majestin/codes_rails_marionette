@@ -1,5 +1,6 @@
 class SourcesController < ApplicationController
 	before_action :set_source, only: [:show, :edit, :update, :destroy]
+	before_filter :authenticate_user!
 
 	# GET /sources
 	# GET /sources.json
@@ -20,13 +21,14 @@ class SourcesController < ApplicationController
 
 	# GET /sources/1/edit
 	def edit
-		
+
 	end
 
 	# POST /sources
 	# POST /sources.json
 	def create
 		@source = Source.new(source_params)
+		@source.user = current_user
 
 		respond_to do |format|
 			if @source.save
@@ -42,6 +44,7 @@ class SourcesController < ApplicationController
 	# PATCH/PUT /sources/1
 	# PATCH/PUT /sources/1.json
 	def update
+		# authorize_action_for(@source)
 		respond_to do |format|
 			if @source.update(source_params)
 				format.html { redirect_to @source, notice: 'Source was successfully updated.' }
@@ -56,6 +59,7 @@ class SourcesController < ApplicationController
 	# DELETE /sources/1
 	# DELETE /sources/1.json
 	def destroy
+		# authorize_action_for(@source)
 		@source.destroy
 		respond_to do |format|
 			format.html { redirect_to sources_url }

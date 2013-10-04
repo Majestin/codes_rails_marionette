@@ -1,4 +1,7 @@
 class ApiController < ApplicationController
+	before_filter :get_user			
+	before_filter :authenticate_user!, :except => [:get_popular_snippets, :get_snippets_by_language]
+
 	respond_to :json
 
 	# def getAllCategory
@@ -13,18 +16,48 @@ class ApiController < ApplicationController
 		# @tags = Tag.all
 	end	
 
+	# GET /api/get_snippets_by_language
+	def get_snippets_by_language
+		# @snippets = Snippet.includes("sources").where(sources: {asset_type: params[:lang]})
+		@snippets = Snippet.where(shared: true).order(created_at: :desc)
+		
+		# @snippets = Snippet.include(:sources).where(asset_type: params[:lang])
+		# @snippets = Snippet.sourced(params[:lang])
+
+		# @snippets = Snippet.find_all_by_source_id(params[:lang])
+		# (asset_type: params[:lang] )
+		# @snippets.each do |s|
+		# 	puts s.where(asset_type: params[:lang])
+
+
+	end
+
+	# GET /api/get_popular_snippets
+	def get_popular_snippets
+	    @snippets = Snippet.where(shared: true).order(created_at: :desc)
+		# @snippets_count = Snippet.count
+		# gon.watch.snippets_count = @snippets_count 		    
+	end
+
+
 	# GET /api/get_all_snippets
 	def get_all_snippets 
 		
-		@snippets = Snippet.all
-		@snippets_count = Snippet.count
-		gon.watch.snippets_count = @snippets_count 				
+		# @snippets = Snippet.all
+		# @snippets_count = Snippet.count
+
+		@snippets = @user.snippets
+		# @snippets_count = @user.snippets.count		
+		# gon.watch.snippets_count = @snippets_count 				
 	end
 
 	# GET /api/get_snippets_by_id/1
 	def get_snippets_by_id
-		@category = Category.find_by_id(params[:id])
+
+		# @category = Category.find_by_id(params[:id])
 		# @category = Category.find(params[:id]) if Category.exists?(id)
+
+		@category = @user.categories.find_by_id(params[:id])
 
 		if @category
 			@snippets = @category.snippets	
@@ -37,7 +70,9 @@ class ApiController < ApplicationController
 
 	# GET /api/sources/:id
 	def get_sources_by_id
-		@snippet = Snippet.find_by_id(params[:id])
+		# @snippet = Snippet.find_by_id(params[:id])
+
+		@snippet = @user.snippets.find_by_id(params[:id])
 
 		if @snippet
 			@sources = @snippet.sources	
@@ -48,33 +83,9 @@ class ApiController < ApplicationController
 		end
 	end
 
-	# snippet
-	# def snippet
-	# 	@snippets = Snippet.all
-	# end
-
-	# def new_snippet
-	# 	@snippet = Snippet.new(snippet_params)
-
-	# 	respond_to do |format|
-	# 		if @category.save
-	# 			format.html { redirect_to @category, notice: 'Category was successfully created.' }
-	# 			format.json { render action: 'show', status: :created, location: @category }
-	# 		else
-	# 			format.html { render action: 'new' }
-	# 			format.json { render json: @category.errors, status: :unprocessable_entity }
-	# 		end
-	# 	end
-	# end
-
 	private
-	# Use callbacks to share common setup or constraints between actions.
-	# def set_category
-		# @category = Category.find(params[:id])
-	# end
-
-	# Never trust parameters from the scary internet, only allow the white list through.
-	def snippet_params
-		params.require(:snippet).permit(:title, :memo, :shared)
-	end		
+	
+	def get_user
+		@user = current_user || User.new
+	end			
 end

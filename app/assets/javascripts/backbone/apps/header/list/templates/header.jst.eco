@@ -1,0 +1,35 @@
+<div id="header-inner" class="">
+	<div id="logo">
+		<a href="#" id="logo-text">Codes</a>
+	</div>
+<!-- 	<div id="search" class="ui icon input">
+		<input type="text" placeholder="Search...">
+		<i class="search icon"></i>
+	</div> -->
+
+	<div id="nav">
+
+		<% if Codes.currentUser: %>
+			<i class="icon-user"> <%= Codes.currentUser.get("username"); %></i>
+
+		<div  class="small ui button nav-list">
+			<a href="#box"><i class="icon-inbox"></i>BOX</a>		
+		</div>				
+
+
+		<div  class="small ui button nav-list red">
+
+			<a href="/users/sign_out" data-method="delete">Sign out</a>
+		</div>
+		<% else: %>
+		
+		<div id="login" class="tiny ui button nav-list">
+			<a href="#sign_in">Login</a>
+		</div>
+		<div id="signup" class="tiny ui purple button nav-list">
+			<a href="#sign_up">Singup</a>
+		</div>
+		<% end %>
+
+	</div>	
+</div>

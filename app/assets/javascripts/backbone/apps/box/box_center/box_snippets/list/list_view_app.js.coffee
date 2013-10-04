@@ -1,7 +1,7 @@
 @Codes.module "BoxApp.Snippets.List", (List, App, Backbone, Marionette, $, _) ->
 
 	class List.CenterSnippet extends App.Views.ItemView
-		template: "box/box_center/box_snippets/list/_sidebar_snippet"
+		template: "box/box_center/box_snippets/list/_center_snippet"
 		# className: "list-content"
 		tagName: "li"
 		# events:
@@ -14,31 +14,31 @@
 		modelEvents:
 			"change" : "modelChanged"
 			"change:tag_list" : "tagChanged"
-			# "change:sources" : "sourcesChanged"
+			"change:sources" : "sourcesChanged"
 
 			"remove" : -> console.log "remove"
 
 		sourcesChanged: ->
 			console.log 'sourcesChanged'
-			@.model.fetch
-				silent: true,
-				success:  (c, response) ->
-					console.log "fetch success",c, response
+			# @.model.fetch
+			# 	silent: true,
+			# 	success:  (c, response) ->
+			# 		console.log "fetch success",c, response
 
-				error:  (c, response) ->
-					console.log "fetch error"
+			# 	error:  (c, response) ->
+			# 		console.log "fetch error"
 		tagChanged: ->
 			@.model.fetch
 				silent: true,
 				success:  (c, response) ->
-					console.log "fetch success",c, response
-					# App.vent.trigger "tag:refresh:count", c
+					# console.log "fetch success",c, response
+
 					gon.tagView.collection.fetch()
 
 				error:  (c, response) ->
 					console.log "fetch error"
 		modelChanged: ->
-			# console.log 'BoxApp.Snippets.List modelChanged', @.model
+			@.trigger "snippet:order"
 			@.render()
 
 		onRender: ->
@@ -50,20 +50,24 @@
 			# else
 				# @.model = gon.snippet
 			
-		triggers:
+		# triggers:
 			# "click"	: "snippet:selected"
-			"contextmenu .content" 		: "snippet:delete:button:clicked"
+			# "contextmenu .content" 		: "snippet:delete:button:clicked"
 
 			
 
 	class List.CenterSnippets extends App.Views.CompositeView
-		template: "box/box_center/box_snippets/list/_sidebar_snippets"
+		template: "box/box_center/box_snippets/list/_center_snippets"
 		itemView: List.CenterSnippet
 		itemViewContainer: "ul#list-group"
 
 		events:
 			"click .list-block"	: "snippetClicked"
 			"click #sidebar-folding" : "sidebarToggleClicked"
+			"click #view-options-menu li a" : "viewOptionsClicked"
+
+
+		
 		snippetClicked: (e) ->
 			e.preventDefault()
 			# 선택된 CSS 변경 
@@ -98,8 +102,31 @@
 			# $("#sidebar").sidebar('attach events', '#sidebar-folding', 'hide')
 			# $("#sidebar").addClass('floating').sidebar('toggle')
 
+		viewOptionsClicked: (e) ->
+			e.preventDefault()
+			# 선택된 CSS 변경 
+			el = $(e.currentTarget)
+			el.addClass("selected").parent().siblings().children().removeClass("selected")			
+
+			role = el.attr("role")
+			gon.viewoptions = role
+					
+			@.collection.comparator = gon.viewoptions
+			@.collection.sort()
+			@.collection.models.reverse()
+			@.collection.trigger "reset"
+
+			@addSnippetItemCssSelected()
+
+
+
+			# @.render()
+			# @.collection.fetch
+			# 	success: (r) ->
+			# 		r.sortByField(gon.viewoptions)
+
 		triggers:
-			"click .new-snippet-add" 			 : "new:snippet:add:button:clicked"	
+			"click .new-snippet-add"	:	"new:snippet:add:button:clicked"	
 			# "click #new-category-remove"	 : "new:category:remove:button:clicked"	
 
 
@@ -107,27 +134,18 @@
 		# 현재 셀렉트 되어있는 Category item의 Text를 가져와 뿌려준다.
 		initialize: ->
 			console.log 'List.CenterSnippets initialize'
-			# @.collection.bind("add", @.snippetAdded, @)
-			# console.log 'BoxApp.List.CenterSnippets onBeforeRender', @.children, gon.snippet
-			# model_id = gon.snippet.id
 
-			# console.log 'model_id : ',model_id
-			# model = @.collection.get(model_id)
-			# @.collection.remove(model, silent: true)
-			# @.collection.add(gon.snippet)
-			# console.log '@.collection.get(model_id) : ', model
-			# model = gon.snippet	
-
+    		
 		onBeforeRender: ->
-
-			# console.log '@.children.findByModel(model_id) : ',@.children.findByModel(model)
-
 			# Selected로 넘어오지않고 URL로 바로 넘어왔을때, 
 			# 렌더링하기 전에 collection에 있는 같은 cid를 가진 모델과 gon.snippet에서 저장했던 model과 같게 한다.
 			# @.children.get( cid)
 
 		onRender: ->
-			console.log 'BoxApp.List.CenterSnippets CompositeView Render'
+			console.log 'BoxApp.List.CenterSnippets Render'
+
+			el = @$("#view-options-menu li a[role=#{gon.viewoptions}]")
+			el.addClass("selected").parent().siblings().children().removeClass("selected")
 
 
 		renewSnippetListHeader: ->
@@ -144,7 +162,7 @@
 
 		addSnippetItemCssSelected: ->
 			if gon.isDetailEmpty == 1
-				console.log 'deleted'
+				# console.log 'deleted'
 			else 
 				el = @$("div[data-snippet='#{gon.snippet_id}']")
 				el.addClass("selected").parent().siblings().children().removeClass("selected")					
@@ -160,6 +178,7 @@
 		snippetRemoved: (snippet) ->
 			# console.log "snippetRemoved", snippet
 			@_refresh_snippets_count snippet, 1
+			gon.tagView.collection.fetch()
 
 		_refresh_snippets_count: (snippet, flag) ->
 			count = @.collection.length

@@ -37,7 +37,8 @@
 					console.log 'getSourcesById error' , c, response, response.responseText, response.status				
 			sources
 
-		
+		getSourcesByJSON: (json) ->
+			sources = new Entities.SourcesCollection json
 
 
 	App.reqres.setHandler "all:sources:entities", ->
@@ -52,3 +53,5 @@
 	App.reqres.setHandler "category:id:sources:entities", (id) ->
 		API.getSourcesById id
 
+	App.reqres.setHandler "source:json:sources:entities", (json) ->
+		API.getSourcesByJSON json

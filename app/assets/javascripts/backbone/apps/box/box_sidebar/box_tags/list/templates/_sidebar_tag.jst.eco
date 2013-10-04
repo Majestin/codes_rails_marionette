@@ -7,7 +7,7 @@
 	
 	<label class="tag-title"><%= @name %></label>
 	<span class="tag-badge"><%= @count %></span>
-
+<!-- 
 	<div class="right-item pull-right">
 		<i class="icon-ellipsis-horizontal" data-toggle="dropdown"></i>
 
@@ -18,5 +18,5 @@
 			<li><a href="#">Delete</a></li>
 
 		</ul>	
-	</div>
+	</div> -->
 </div>

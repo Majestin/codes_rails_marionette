@@ -1,4 +1,8 @@
-attributes :id, :title, :memo, :shared, :category_id, :tags, :sources
+attributes :id, :title, :memo, :shared, :category_id, :tags, :sources, :created_at, :updated_at
+
+#node :author do |report|
+#	{ :name => report.author.username }
+#end
 
 node do |snippet|
 	{

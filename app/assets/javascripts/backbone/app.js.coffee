@@ -10,17 +10,17 @@
 		App.environment = options.environment
 		
 	App.addRegions
-		# headerRegion: "#header-region"
+		headerRegion: "#header-region"
 		mainRegion: "#main-region"
-		categoryRegion: "#category-region"
-		tagRegion: "#tag-region"
-		centerRegion: "#center-region"
-		detailRegion: "#detail-region"
+		# categoryRegion: "#category-region"
+		# tagRegion: "#tag-region"
+		# centerRegion: "#center-region"
+		# detailRegion: "#detail-region"
 
 	App.addInitializer ->
-		# console.log "App.addinitializer"
+		console.log "@Codes App.addinitializer"
 		# App.module("PostApp").start()		
-		# App.module("HeaderApp").start()
+		App.module("HeaderApp").start()
 
 	App.reqres.setHandler "default:region", ->
 		App.mainRegion
@@ -32,13 +32,18 @@
 		App.unregister instance, id if App.environment is "development"
 			
 	App.on "initialize:after", ->
-		# console.log "initialize:after"
+		console.log "initialize:after",Codes.currentUser
 		@startHistory()
-		@navigate(@rootRoute, trigger: true) unless @getCurrentRoute()			
+		console.log '@getCurrentRoute()',@getCurrentRoute(), @rootRoute
+		@navigate(@rootRoute, trigger: true) unless @getCurrentRoute() 	
+
+			# @navigate(@rootRoute, trigger: true)			
+		
+
 		# options에 트리거 true로하면 트리거 작동해서 user_app.js.coffee 쪽에 listUser가 바로 실행됨.
 
 	App.startSubApp = (appName, args) ->
-		# console.log 'appName', appName, 'args',args
+		console.log 'appName', appName, 'args',args
 		currentApp = App.module(appName)
 		return  if App.currentApp is currentApp
 		App.currentApp.stop()  if App.currentApp

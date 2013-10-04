@@ -11,17 +11,18 @@
 
 #list-header {
   display: block;
-  background-color: rgb(244, 244, 244);
-  padding: 12px 14px;
+  padding: 10px 10px 10px 14px;
   margin: 0 auto;
   border-bottom: 1px solid rgb(229, 233, 237);
-  /*box-shadow: 0 1px 2px rgba(0,0,0,0.07);*/
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   label {
-    color: rgb(117, 117, 117);
+    color: rgb(52,52,52);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     font-weight: 500;
   }
   i {
     float: right;
+    line-height: 20px;
     color: rgb(193, 193, 193);
     cursor: pointer;
   }
@@ -49,7 +50,7 @@
 
 }
 .list-block.selected {
-  background-color: #eee;
+  background-color: rgb(244, 244, 244);
 }
 
 .date {
@@ -59,12 +60,13 @@
 }
 
 .content {
-  padding: 15px 12px;
+  padding: 17px 12px;
   h5 {
     float: left;
     font-size: 1em;
-    color: rgb(52, 52, 52);
+    color: rgb(52,52,52);
     font-weight: 500;
+    line-height: 7px;
   }
   i {
     float: right;
@@ -74,7 +76,7 @@
 }
 
 .item {
-  margin: 18px 15px 10px 12px;
+  margin: 16px 12px 20px 12px;
   max-width: 270px;
   display: block;
 }
@@ -83,8 +85,8 @@
   float: right;
   font-size: 0.8em;
   font-weight: 500;
-  color: rgb(117, 117, 117);
-  margin: 0 -4px -4px 0;
+  color: rgb(117,117,117);
+  margin: 0 -5px -6px 0;
 }
 
 .list-type {
@@ -93,7 +95,7 @@
 
 .item-more {
   margin-top: 7px;
-  float: left;
+  float: right;
   margin-left: 8px;
   i {
     color: rgb(189, 189, 189);
@@ -101,7 +103,8 @@
 }
 
 .list-type > .badge {
-  margin-right: 1px;
+  margin-right: 8px;
+  float: left;  
 }
 
 .badge {
@@ -121,26 +124,112 @@
   border-radius: 3px;
 }
 
-.red {
-  background-color: rgb(233, 86, 37);
+.C_Cpp {
+  background-color: #f34b7d;
+}
+.Coffee {
+  background-color: #244776;
+}
+.CSharp {
+  background-color: #5a25a2;
+}
+// bb92af
+.CSS {
+  background-color: #3581ba;
 }
 
-.blue {
-  background-color: rgb(66, 179, 213);
+.golang {
+  background-color: #8d04eb;
 }
-
-.green {
-  background-color: rgb(125, 194, 41);
+.HAML {
+  background-color: #555;
+}
+.HTML {
+  background-color: #db5855;
+}
+.Jade {
+  background-color: #555;
+}
+.Java {
+  background-color: #b07219;
+}
+.JavaScript {
+  background-color: #f15501;
+}
+.JSON {
+  background-color: #555;
+}
+.JSP {
+  background-color: #555;
+}
+.LESS {
+  background-color: #555;
+}
+.Lua {
+  background-color: #fa1fa1;
+}
+.Markdown {
+  background-color: #555;
+}
+.ObjectiveC {
+  background-color: #ff0c5a;
+}
+.Perl {
+  background-color: #0298c3;
+}
+.pgSQL {
+  background-color: #555;
+}
+.PHP {
+  background-color: #6e03c1;
+}
+.Python {
+  background-color: #3581ba;
+}
+.R {
+  background-color: #198ce7;
+}
+.RDoc {
+  background-color: #555;
+}
+.RHTML {
+  background-color: #db5855;
+}
+.Ruby {
+  background-color: #701516;
+}
+.Scala {
+  background-color: #7dd3b0;
+}
+.SCSS {
+  background-color: #555;
+}
+.SH {
+  background-color: #5861ce;
+}
+.SQL {
+  background-color: #82937f;
+}
+.SVG {
+  background-color: #555;
+}
+.Text {
+  background-color: #82937f;
+}
+.XML {
+  background-color: #555;
+}
+.YAML {
+  background-color: #555;
 }
 
 .list-footer {
-  background-color: rgb(244, 244, 244);
   position: fixed;
   width: 320px;
   bottom: 0px;
   border-top: 1px solid rgb(229, 233, 237);
   padding: 10px 15px;
-  /*box-shadow: 0 1px 2px rgba(0,0,0,0.07) inset;*/
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07) inset;
 }
 
 #sidebar-folding {
@@ -164,15 +253,17 @@
   &.cnt-badge {
     display: inline-block;
     min-width: 10px;
-    padding: 3px 7px;
+    padding: 2px 8px;
+    padding-right: 9px;
+    padding-left: 9px;
     font-size: 12px;
     font-weight: bold;
-    line-height: 1;
+    line-height: 16px;
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    background-color: rgb(117, 117, 117);
-    border-radius: 10px;
+    background-color: rgb(173, 173, 173);
+    border-radius: 9px;
   }
 }

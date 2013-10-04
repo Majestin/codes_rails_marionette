@@ -1,0 +1,26 @@
+<div class="live" data-snippet="<%= @id %>">
+	<h3 class="ui header"><%= @title %></h3>
+	<div class="live-list-item ellipsis">
+		<% if @sources.length: %>
+			<% for source, i in @sources: %>
+				<% if i > 3: %>			
+					<% if i is @sources.length-1: %>
+						<div class="item-more">
+							<i class="icon-ellipsis-horizontal"></i>
+						</div>
+					<% end %>
+				<% else: %>
+					<span class="badge <%= source.asset_type %>"><%= source.asset_type %></span>	
+				<% end %>
+			<% end %>
+		<% else: %>
+		<% end %>				
+	</div>
+	<p class="ellipsis">
+		<%= @memo %>
+	</p>
+	<div class="live-extra">
+		<label><%= @created_at_formatted %></label>
+		<label><strong>created by <%= @user.username %>.</strong></label>
+	</div>
+</div>

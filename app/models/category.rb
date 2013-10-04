@@ -7,12 +7,19 @@
 #  parent     :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 class Category < ActiveRecord::Base
-    has_many :snippets, dependent: :destroy
+	resourcify
+	include Authority::Abilities
 
-    default_scope -> {order(created_at: :asc)}
+
+	belongs_to :user
+	has_many :snippets, dependent: :destroy
+
+
+	default_scope -> {order(created_at: :asc)}
     # default_scope :order => 'created_at DESC'
 
     def snippets_count

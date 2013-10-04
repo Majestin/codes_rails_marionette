@@ -1,0 +1,55 @@
+<div id="live-detail-header-wrap">
+	<div id="live-detail-header">
+		<h2 id="live-detail-title"><%= @title %></h2>
+		<div id="live-detail-user-email">
+			<label>Shared by <strong><%= @user.username %></strong> on <%= @created_at_formatted %> </label>
+		</div>
+		<div id="live-detail-extra">
+			<div id="live-detail-date">
+				<label><%= @updated_at_formatted %> ago</label>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ui divider"></div>
+<div id="live-detail-memo">
+	<div id="live-memo-block">
+		<p><%= @memo %>
+		</p>
+	</div>
+</div>
+<div class="ui divider"></div>
+
+<div id="asset-content">
+	<div id="asset-input">
+		<div id="tabs">
+			<ul id="assetTab" class="nav nav-tabs">
+				<% if @sources.length: %>
+				<% for source, i in @sources: %>
+				<li>
+					<a data-asset="<%= source.id %>" href="#<%= source.id %>" data-toggle="tab"><%= source.asset_title %></a>
+				</li>						
+				<% end %>
+				<% else: %>
+
+				<% end %>	
+				
+			</ul>
+			<div id="assetTabContent" class="tab-content">
+				<% if @sources.length: %>
+				<% for source in @sources: %>
+				<div data-asset="<%= source.id %>" id="<%= source.id %>" class="tab-pane">
+					<textarea data-asset="<%= source.id %>" class="ace_editor" id="editor" rows="4" style="width: 100%"><%= source.asset_source %></textarea>
+				</div>
+				<% end %>
+
+				<% else: %>
+
+				<% end %>		
+
+
+			</div>
+		</div>
+	</div> <!-- asset-content -->
+	<div class="ui divider"></div>
+</div>

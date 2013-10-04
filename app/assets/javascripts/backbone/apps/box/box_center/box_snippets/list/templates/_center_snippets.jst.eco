@@ -1,0 +1,35 @@
+<div id="list-header">
+	<label>All snippets</label>
+	<i class="new-snippet-add icon-plus"></i>
+</div>
+
+<ul id="list-group">
+
+</ul>
+
+
+<div class="list-footer">
+
+
+	<div class="btn-group dropup">
+		<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+			View Options <span class="caret"></span>
+		</button>
+
+		<ul id="view-options-menu" class="dropdown-menu" role="menu">
+			<li role="presentation" class="dropdown-header">Sort By: Desc</li>
+			<li role="presentation" class="divider"></li>
+			<li><a  role="created_at" href="#">Date Created</a></li>
+			<li><a  role="updated_at" href="#">Date Updated</a></li>
+			<li><a  role="title" href="#">Title</a></li>
+		</ul>
+	</div>
+
+<!-- 	 <button data-dropdown="#dropdown-2" id="snippet-order" class="pure-button pure-button-active">
+		<i class="icon-caret-up"></i>TITLE
+	</button> -->
+
+	<span id="list-count" class="cnt-badge"><%= @items_length %></span>
+</div>
+
+

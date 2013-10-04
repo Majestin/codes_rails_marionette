@@ -1,4 +1,6 @@
 @Codes.module "BoxApp.Detail.Show", (Show, App, Backbone, Marionette, $, _) ->
+	class Show.DetailSource extends App.Views.CompositeView
+		template: "box/box_detail/show/_detail_sources"
 
 	class Show.DetailSnippet extends App.Views.ItemView
 		template: "box/box_detail/show/_detail_snippet"
@@ -8,6 +10,8 @@
 
 		triggers:
 			"click #snippet-delete"	:	"snippet:delete:button:clicked"
+			# "click #asset-delete"	:	"source:delete:button:clicked"			
+			"click #new-source" 	:	"new:source:add:button:clicked"
 		
 		modelEvents:
 			"change" : "modelChanged"
@@ -17,6 +21,7 @@
 
 
 		events:
+			"click #snippet-share" : "sharedClicked"
 			# "contextmenu .active"	: "aceEditor"
 			# "keypress input[name='title']" : "tabOnEnter"
 			"blur input[name='title']" : "saveForm"
@@ -29,19 +34,32 @@
 			"click #asset-dropdown li a" : "selectedMode"
 
 			# Edit Mode
-			"click #asset-edit" : "assetEditClicekd"
-			"click #asset-copy" : "assetCopyClicekd"
+			"click #asset-edit" : "assetEditClicked"
+			# "click #asset-copy" : "assetCopyClicekd"
+			"click #asset-delete" : "assetDeleteClicked"
 
 			# Edit Mode
 			"click #asset-cancel" : "assetCancelClicked"
 			"click #asset-ok" : "assetSaveClicked"
 
+		sharedClicked: (e) ->
+			el = $(e.currentTarget)
+			if @.model.get("shared")
+				el.removeClass("selected")
+			else
+				el.addClass("selected")			
+			
+			
+
+			@.model.save
+				shared: !@.model.toJSON().shared
+				
 		initialize: ->
-			@beforeEditValue
+			@beforeEditValue = ""
 
 			@supportedModes =
 				C_Cpp: ["cpp|c|cc|cxx|h|hh|hpp"]
-				coffee: ["coffee|cf|cson"]
+				Coffee: ["coffee|cf|cson"]
 				CSharp: ["cs"]
 				CSS: ["css"]
 				golang: ["go"]
@@ -78,13 +96,8 @@
 			@tagInput = @$('input[name="item[tag_list]"]')			
 			@memo = @$("textarea#memo-textarea")
 
-			# @tab = @$("#assetTab")
-			console.log @.$el, @$el
-			
-
-
-			@initTab()
 			@initEditor()
+			@initTab()
 
 			@tagInput.tokenInput '/snippets/tags.json',
 				# crossDomain: false
@@ -94,10 +107,59 @@
 				prePopulate			:	@tagInput.data('tags')
 				# onAdd: @onAddTag
 				# onDelete: @onDeleteTag
+
 		# onAddTag: (obj) ->
-			# console.log 'gon.model',gon.model
+		# 	console.log 'gon.model',gon.model
+						
 		# onDeleteTag: (obj) ->
 			# console.log 'onDeleteTag', obj , @tagInput.val()	
+			
+		initTab: ->
+			el = @$("#assetTab a[data-asset=#{gon.asset_id}]")
+
+			console.log el.length
+			# gon.asset_id에 해당되는 탭이 없을 때
+			if el.length
+				el.tab("show")
+				@$("#assetTabContent > div[data-asset=#{gon.asset_id}]").addClass("active")
+			else
+				@$("#assetTab a:first").tab("show")				
+				@$("#assetTabContent > div:first").addClass("active")
+				# console.log @$("#assetTabContent > div:first")
+		initEditor: ->
+			args_sources = @.model.toJSON().sources
+
+			for source in args_sources
+
+				el = @$("textarea#editor[data-asset=#{source.id}]")
+
+				el.ace
+					theme: "textmate"
+					lang: source.asset_type.toLowerCase()		
+
+				el.parent().find(".ace_editor").css('width', '100%')
+				el.parent().find(".ace_editor").css('height', '340')
+
+				# el.parent().find(".ace_editor").css('display', 'none')
+
+				el.data("ace").editor.ace.$readOnly = true			
+				el.parent().find("#asset-view-mode").show()
+				el.parent().find("#asset-edit-mode").hide()
+
+			# el.parent().find(".ace_editor").css('display', 'block')
+
+		
+			if gon.isEditMode 
+				console.log 'isEditMode'
+
+				el = @$("textarea#editor[data-asset=#{gon.asset_id}]")
+				decorator = el.data("ace")				
+				
+				decorator.editor.ace.$readOnly = false	
+				el.parent().find("#asset-view-mode").hide()
+				el.parent().find("#asset-edit-mode").show()						
+				@beforeEditValue = decorator.editor.ace.getValue()
+
 
 		keypressTitleInput: (e) ->
 			# e.preventDefault()
@@ -141,53 +203,10 @@
 
 			@$("#editor").ace
 				lang: selText.toLowerCase()
-			
-		initTab: ->	
-			
 
-
-			# console.log 'initTab',@$("#assetTab a:last")
-			# _.bind(@$("#assetTab a:first").tab('show'))
-			# setTimeout _.bind(), 200
-			# @$("#assetTab a:last").on "shown.bs.tab", (e) ->
-			# 	console.log e
-			# 	e.target
-			# 	e.relatedTarget
-			@$("#assetTab a:first").tab("show")
-
-		initEditor: ->
-
-			# for i in array
-			
-			
-			@$("#editor").ace
-				theme: "textmate"
-				lang: "html"
-			@$(".ace_editor").css('width', '100%')
-
-			console.log @.model.toJSON().sources
-
-			decorator = @$("#editor").data("ace")
-			console.log decorator, decorator.editor, decorator.editor.session
-
-			if gon.isEditMode 
-				@$("#asset-view-mode").hide()			
-				@$("#asset-edit-mode").show()				
-			else 
-				decorator.editor.ace.$readOnly = true			
-				@$("#asset-view-mode").show()			
-				@$("#asset-edit-mode").hide()
-				
-			# editor_html = ace.edit("editor")
-			# editor_html.setTheme "ace/theme/twilight"
-			# editor_html.session.setMode "ace/mode/html"
-			# editor_html.session.setValue "<h1>hello world</h1>"
-			# editor_html.session.on "change", ->
-			# 	$("#design_html").val editor_html.session.getValue()
 
 
 		blurTagInput: (event) ->
-			console.log '@tagInput.val()',@tagInput.val()
 			@.model.save tag_list: @tagInput.val(),
 				success: ->
 					console.log 'tag save success'	
@@ -204,50 +223,61 @@
 					tag_list: @tagInput.val()	
 					title: @title.val()				
 					memo: @memo.val()	
+
 		
-		assetEditClicekd: (e) ->
+		assetEditClicked: (e) ->
+			e.preventDefault()
+			el = $(e.currentTarget)				
+			asset_id = el.parents(".tab-pane.active").data('asset')
 
-			decorator = @$("#editor").data("ace")
-
+			decorator = el.parents(".tab-pane.active").find("textarea#editor[data-asset=#{asset_id}]").data("ace")
+				
 			decorator.editor.ace.$readOnly = false
-			@$("#asset-view-mode").hide()			
-			@$("#asset-edit-mode").show()
+			el.parents(".tab-pane.active").find("#asset-view-mode").hide()			
+			el.parents(".tab-pane.active").find("#asset-edit-mode").show()
 			gon.isEditMode = true				
+
 
 			@beforeEditValue = decorator.editor.ace.getValue()
 
 
-		assetCopyClicekd: (e) ->
-			decorator = @$("#editor").data("ace")
-			console.log decorator.editor.ace.session, decorator.editor.ace.getValue()
+		assetDeleteClicked: (e) ->
+			e.preventDefault()
+			el = $(e.currentTarget)				
+			asset_id = el.parents(".tab-pane.active").data('asset')
 
-			# @$("#asset-copy").clipboard
-			# 	# Return copying string data to clipboard 
-			# 	copy: ->
-			# 		return decorator.editor.ace.getValue()
+			args_sources = @.model.toJSON().sources
 
-			# 	# Process pasted string data from clipboard 
-			# 	paste: (data) ->
+			sources = App.request "source:json:sources:entities", args_sources
 
-			# 	# $(this).text(data);
-			# 	# Process delete signal 
-			# 	del: ->
+			delete_source = sources.get(asset_id)
+			delete_source.destroy()
+			sources.remove(delete_source)
+			
 
-			# $(this).remove();
-			# "cut" command is "copy" + "del" combination
+			@.model.save
+				sources: sources.toJSON()
+
+			@listenTo @.model, "updated", ->
+				@.render()
+				console.log 'updated'
+			
+			# decorator = @$("#editor").data("ace")
+			# console.log decorator.editor.ace.session, decorator.editor.ace.getValue()
 
 		assetCancelClicked: (e) ->
 			e.preventDefault()
 			el = $(e.currentTarget)				
+			asset_id = el.parents(".tab-pane.active").data('asset')
 			asset_title = el.parents("#tabs").find("#assetTab li.active a").text()
 			el.parents(".tab-pane.active").find("#title-input").val(asset_title)
 
+			decorator = el.parents(".tab-pane.active").find("textarea#editor[data-asset=#{asset_id}]").data("ace")
+			decorator.editor.ace.$readOnly = true
+			el.parents(".tab-pane.active").find("#asset-view-mode").show()			
+			el.parents(".tab-pane.active").find("#asset-edit-mode").hide()
+			gon.isEditMode = false				
 
-			decorator = @$("#editor").data("ace")
-			decorator.editor.ace.$readOnly = true			
-			@$("#asset-view-mode").show()			
-			@$("#asset-edit-mode").hide()
-			gon.isEditMode = false
 
 			decorator.editor.ace.setValue(@beforeEditValue)
 
@@ -256,7 +286,6 @@
 			el = $(e.currentTarget)				
 			asset_id = el.parents(".tab-pane.active").data('asset')
 
-			# 
 			textVal = el.parents(".tab-pane.active").find("#title-input").val()
 
 
@@ -292,14 +321,10 @@
 			# asset-type Text 변경
 			el.parents(".tab-pane.active").find("#asset-type").text(asset_type)
 
-			# asset-type
-
-			console.log textVal,endTxt,frontTxt,tab_text,asset_type
-
-			decorator = @$("#editor").data("ace")
+			decorator = el.parents(".tab-pane.active").find("textarea#editor[data-asset=#{asset_id}]").data("ace")
 			decorator.editor.ace.$readOnly = true			
-			@$("#asset-view-mode").show()			
-			@$("#asset-edit-mode").hide()
+			el.parents(".tab-pane.active").find("#asset-view-mode").show()			
+			el.parents(".tab-pane.active").find("#asset-edit-mode").hide()
 			gon.isEditMode = false
 
 			@beforeEditValue = decorator.editor.ace.getValue()
@@ -313,41 +338,26 @@
 				asset_source: decorator.editor.ace.getValue()
 				asset_title: asset_title
 				asset_type: asset_type
-			console.log source
 			
 			source.save
 				update: ->
-					console.log 'source update success'	
-					console.log @.model.sources
+					# console.log 'source update success'	
+					# console.log @.model.sources
 
 			@listenTo source, "updated", ->
-				console.log @.model, @.model.get('sources')
+		
+				args_sources = @.model.toJSON().sources
+
+				sources = App.request "source:json:sources:entities", args_sources
+
+				change_source = sources.get(source.id)
+				change_source.set 
+					asset_source: source.toJSON().asset_source
+					asset_title:  source.toJSON().asset_title
+					asset_type:   source.toJSON().asset_type
 				
-				# @listenTo source, "created", ->
-				# 	source_arr = []
-				# 	source_arr.push source.toJSON()
-
-				# 	snippet.set 
-				# 		sources: source_arr
-
-				# 	gon.isDetailEmpty = 0
-				# 	gon.snippet = snippet				
-				# 	gon.snippet_id = snippet.id
-
-				# 	# console.log "!created snippet.id :", snippet.id
-				# 	# child.collection.add(snippet)
-
-				# 	child.collection.unshift(snippet)
-				# 	# console.log 'child.collection.sort()',child.collection.sort()
-				# 	child.view.render()
-
-				# 	gon.isEditMode = true
-				# 	# 상위 컨트롤러에 알림
-				# 	@trigger "snippet:selected", snippet
-			
-	
-
-
+				@.model.save
+					sources: sources.toJSON()
 
 
 

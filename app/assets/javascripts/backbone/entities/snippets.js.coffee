@@ -5,11 +5,24 @@
 	
 	class Entities.SnippetCollection extends App.Entities.Collection
 		model: Entities.Snippet
+		initialize: ->
+
 		url: -> Routes.snippets_path()
 
-		# comparator: (item) ->
-		# 	-item.get('created_at_formatted')
+		# sort_key: 'id'
 
+		comparator: (item) ->
+			
+		# 	# date = new Date(item.get(@.sort_key))
+		# 	# console.log '@.sort_key',@.sort_key,item.get(@.sort_key),
+		# 	# -date.getTime()
+			-item.get(gon.viewoptions)
+
+		# sortByField: (fieldName) ->
+		# 	console.log 'fieldName',fieldName
+		# 	# @desc = desc
+		# 	@.sort_key = fieldName
+		# 	@.sort()
 
 	API =
 		getSnippets: ->
@@ -45,7 +58,19 @@
 				error: (c, response) ->
 					console.log 'getSnippetsByTag error' , c, response, response.responseText, response.status				
 			snippets
-		
+
+		getPopularSnippets: ->
+			snippets = new Entities.SnippetCollection
+			snippets.url = Routes.get_popular_snippets_path()
+			snippets.fetch
+				reset: true
+				error: (c, response) ->
+					console.log 'getSnippetsByTag error' , c, response, response.responseText, response.status				
+			snippets		
+
+		getSnippetsByJson: (json) ->
+			snippets = new Entities.SnippetCollection json
+			snippets
 
 
 	App.reqres.setHandler "all:snippets:entities", ->
@@ -63,5 +88,11 @@
 	App.reqres.setHandler "tag:title:snippets:entities", (tag_name) ->
 		API.getSnippetsByTag tag_name		
 
+	App.reqres.setHandler "all:popular:snippets:entities", ->
+		API.getPopularSnippets()		
+
 	App.reqres.setHandler "search:snippets:entities", (searchTerm) ->
 		API.getSnippets()				
+
+	App.reqres.setHandler "snippet:json:entities", (json) ->
+		API.getSnippetsByJson json		

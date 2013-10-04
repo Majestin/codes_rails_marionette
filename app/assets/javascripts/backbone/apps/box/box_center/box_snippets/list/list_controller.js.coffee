@@ -17,7 +17,7 @@
 				console.log "BoxApp.Snippets.List render!"					
 				snippetView.renewSnippetListHeader()
 				snippetView.addSnippetItemCssSelected()					
-				setTimeout _.bind(@setCurrent, this), 50
+				setTimeout _.bind(@setCurrent, this), 100
 
 			@listenTo snippetView, "composite:rendered", ->
 				console.log "BoxApp.Snippets.List composite:rendered!"					
@@ -29,15 +29,29 @@
 			# Snippet Selected
 			@listenTo snippetView, "snippet:selected", @_snippetSelected
 
+
+
+			@listenTo snippetView, "childview:snippet:order", (args) ->
+
+				snippetView.collection.comparator = gon.viewoptions
+				snippetView.collection.sort()
+				snippetView.collection.models.reverse()
+
+				snippetView.collection.trigger "reset"
+				snippetView.addSnippetItemCssSelected()										
+
+
 			# @listenTo snippetView, "snippet:removed", @_snippetRemoved
 
 			# Snippet 아이템 삭제
 			@listenTo snippetView, "childview:snippet:delete:button:clicked", (child, args) ->
 				model = args.model
-				if confirm "Are you sure you want to delete #{model.get("title")}?" then model.destroy() else false
-				console.log "Delete Model is snippet : ", args.model
-				@_snippetRemoved model
 
+				if confirm ("Are you sure you want to delete #{model.get("title")}?")
+					model.destroy() 
+					@_snippetRemoved model 
+				else 
+					false
 
 			@show snippetView			
 
@@ -57,8 +71,8 @@
 				source.save
 					snippet_id: snippet.id
 					asset_source: "Hello! Codes"
-					asset_title: "codes"					
-					asset_type: "txt"
+					asset_title: "codes.txt"					
+					asset_type: "Text"
 
 				@listenTo source, "created", ->
 					source_arr = []
@@ -70,15 +84,17 @@
 					gon.isDetailEmpty = 0
 					gon.snippet = snippet				
 					gon.snippet_id = snippet.id
+					gon.asset_id = source.id
+					gon.isEditMode = true
 
 					# console.log "!created snippet.id :", snippet.id
 					# child.collection.add(snippet)
 
 					child.collection.unshift(snippet)
+					# child.collection.sortByField(gon.viewoptions)
 					# console.log 'child.collection.sort()',child.collection.sort()
 					child.view.render()
 
-					gon.isEditMode = true
 					# 상위 컨트롤러에 알림
 					@trigger "snippet:selected", snippet
 
@@ -98,7 +114,7 @@
 
 		_snippetSelected: (model) ->
 			gon.isEditMode = false
-			
+
 			@trigger "snippet:selected", model
 
 		getSnippetView: (snippets) ->

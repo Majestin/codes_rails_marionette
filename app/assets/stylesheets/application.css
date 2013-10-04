@@ -10,12 +10,14 @@
  *
  
  *= require font-awesome
- *= require token-input-facebook
-
+ *= require_tree ./
  */
 
 
 @import "comps/_base";
+@import "apps/semantic.min";
 @import "apps/box";
 @import "apps/list";
 @import "apps/detail";
+@import "apps/live";
+@import "apps/user";

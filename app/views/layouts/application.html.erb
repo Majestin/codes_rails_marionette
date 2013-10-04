@@ -10,7 +10,16 @@
 </head>
 <body>
 
+<!-- 만약 로그인이 되있으면 Body를 Live Render로 아니면 Box로 Render  -->
 	<%= yield %>
-
+	<script type="text/javascript">
+	<% if signed_in? -%>
+		Codes.currentUser = new Codes.Entities.User(<%= current_user.to_json.html_safe %>);
+	
+	<% else -%>
+		Codes.currentUser = null;
+	<% end -%>
+		// Codes.start();
+	</script>
 </body>
 </html>

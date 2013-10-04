@@ -10,23 +10,7 @@
 
 			@listenTo tagView, "render", ->
 				console.log "BoxApp.Tags.List Render!"					
-				
-			# @listenTo categoryView, "composite:rendered", ->
-			# 	console.log "BoxApp.Categories.List composite:rendered!"					
-			# 	# categoryView.addCssSelected()
-
-			# # NewRegion 추가
-			# App.addRegions 
-			# 	newCategoryRegion: "#new-category-region"
-
-			# # New Category 뷰 랜더링				
-			# @listenTo categoryView, "new:category:add:button:clicked", (child, args) =>					
-			# 	@newCategoryRegion child, args
-
-			# # New Category 뷰 닫기
-			# @listenTo categoryView, "new:category:remove:button:clicked", (child, args) =>
-			# 	App.newCategoryRegion.close()
-
+	
 			# Tag Selected
 			@listenTo tagView, "tag:selected", @_tagSelected
 
